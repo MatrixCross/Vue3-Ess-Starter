@@ -54,6 +54,6 @@
   },
   "simple-git-hooks": {
     "commit-msg": "npx --no-install commitlint --edit \"$1\"",
-    "pre-commit": "pnpm typecheck && pnpm lint"
+    "pre-commit": "pnpm typecheck && pnpm lint && git diff --exit-code"
   }
 }
