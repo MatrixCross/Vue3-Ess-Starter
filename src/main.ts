@@ -9,9 +9,9 @@ import { setupI18n } from '@/locales'
 async function setupApp() {
   setupLoading()
   setupNProgress()
-  setupDayjs()
   const app = createApp(App)
   setupStore(app)
+  setupDayjs()
   await setupRouter(app)
   setupI18n(app)
   setupAppVersionNotification()

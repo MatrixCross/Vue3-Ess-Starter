@@ -3,28 +3,8 @@ import { defu } from 'defu'
 import { addColorAlpha, getColorPalette, getPaletteColorByNumber, getRgb } from '@/utils/color'
 import { DARK_CLASS } from '@/const'
 import { toggleHtmlClass } from '@/utils/common'
-import { localStg } from '@/utils/storage'
-import { overrideThemeSettings, themeSettings } from '@/theme/settings'
+import { themeSettings } from '@/theme/settings'
 import { themeVars } from '@/theme/vars'
-
-/** Init theme settings */
-export function initThemeSettings() {
-  // if want to update theme settings when publish new version, please update `overrideThemeSettings` in `src/theme/settings.ts`
-
-  const localSettings = localStg.get('themeSettings')
-
-  let settings = defu(localSettings, themeSettings)
-
-  const isOverride = localStg.get('overrideThemeFlag') === BUILD_TIME
-
-  if (!isOverride) {
-    settings = defu(overrideThemeSettings, settings)
-
-    localStg.set('overrideThemeFlag', BUILD_TIME)
-  }
-
-  return settings
-}
 
 /**
  * create theme token css vars value by theme settings

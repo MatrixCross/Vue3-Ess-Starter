@@ -128,4 +128,6 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     login,
     initUserInfo,
   }
+}, {
+  persist: true,
 })

@@ -32,6 +32,7 @@ export const useAppStore = defineStore(SetupStoreId.App, () => {
   }
 
   watch(locale, () => {
+    setLocale(locale.value)
     updateDocumentTitleByLocale()
     setDayjsLocale(locale.value)
   })

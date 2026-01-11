@@ -1,19 +1,19 @@
 import { computed, effectScope, onScopeDispose, ref, toRefs, watch } from 'vue'
 import type { Ref } from 'vue'
-import { useDateFormat, useEventListener, useNow, usePreferredColorScheme } from '@vueuse/core'
+import { useDateFormat, useNow, usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { useAuthStore } from '../auth'
 import {
   addThemeVarsToGlobal,
   createThemeToken,
   getNaiveTheme,
-  initThemeSettings,
   toggleAuxiliaryColorModes,
   toggleCssDarkMode,
 } from './shared'
 import { getPaletteColorByNumber } from '@/utils/color'
 import { localStg } from '@/utils/storage'
 import { SetupStoreId } from '@/const'
+import { themeSettings } from '@/theme/settings'
 
 /** Theme store */
 export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
@@ -22,7 +22,7 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
   const authStore = useAuthStore()
 
   /** Theme settings */
-  const settings: Ref<App.Theme.ThemeSetting> = ref(initThemeSettings())
+  const settings: Ref<App.Theme.ThemeSetting> = ref(themeSettings)
 
   /** Optional NaiveUI theme overrides from preset */
   const naiveThemeOverrides: Ref<App.Theme.NaiveUIThemeOverride | undefined> = ref(undefined)
@@ -215,27 +215,13 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     }
   }
 
-  /** Cache theme settings */
-  function cacheThemeSettings() {
-    const isProd = import.meta.env.PROD
-
-    if (!isProd)
-      return
-
-    localStg.set('themeSettings', settings.value)
-  }
-
-  // cache theme settings when page is closed or refreshed
-  useEventListener(window, 'beforeunload', () => {
-    cacheThemeSettings()
-  })
-
   // watch store
   scope.run(() => {
     // watch dark mode
     watch(
       darkMode,
       (val) => {
+        localStg.set('darkMode', val)
         toggleCssDarkMode(val)
       },
       { immediate: true },
@@ -291,4 +277,6 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     setWatermarkEnableTime,
     setNaiveThemeOverrides,
   }
+}, {
+  persist: true,
 })
