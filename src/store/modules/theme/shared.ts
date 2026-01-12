@@ -1,5 +1,5 @@
-import type { GlobalThemeOverrides } from 'naive-ui'
 import { defu } from 'defu'
+import type { GlobalThemeOverrides } from 'naive-ui'
 import { addColorAlpha, getColorPalette, getPaletteColorByNumber, getRgb } from '@/utils/color'
 import { DARK_CLASS } from '@/const'
 import { toggleHtmlClass } from '@/utils/common'

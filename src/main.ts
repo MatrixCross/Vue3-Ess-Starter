@@ -1,6 +1,6 @@
 import './styles'
-import App from './App.vue'
 import { createApp } from 'vue'
+import App from './App.vue'
 import { setupAppVersionNotification, setupDayjs, setupLoading, setupNProgress } from '@/plugins'
 import { setupStore } from '@/store'
 import { setupRouter } from '@/router'

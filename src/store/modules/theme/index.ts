@@ -1,5 +1,4 @@
 import { computed, effectScope, onScopeDispose, ref, toRefs, watch } from 'vue'
-import type { Ref } from 'vue'
 import { useDateFormat, useNow, usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { useAuthStore } from '../auth'
@@ -10,6 +9,7 @@ import {
   toggleAuxiliaryColorModes,
   toggleCssDarkMode,
 } from './shared'
+import type { Ref } from 'vue'
 import { getPaletteColorByNumber } from '@/utils/color'
 import { localStg } from '@/utils/storage'
 import { SetupStoreId } from '@/const'
