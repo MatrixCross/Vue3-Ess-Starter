@@ -1,22 +1,20 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { useAppStore } from '@/store/modules/app'
-import { useAuthStore } from '@/store/modules/auth'
-import { useThemeStore } from '@/store/modules/theme'
+import { useStore } from '@/hooks'
 
 defineOptions({ name: 'MainLayout' })
 
 const { t } = useI18n()
-const appStore = useAppStore()
-const authStore = useAuthStore()
-const themeStore = useThemeStore()
+const { changeLocale, localeOptions } = useStore('app')
+const { resetStore } = useStore('auth')
+const { toggleThemeScheme, themeScheme } = useStore('theme')
 
 function handleLanguageSelect(key: I18n.LangType) {
-  appStore.changeLocale(key)
+  changeLocale(key)
 }
 
 function handleLogout() {
-  authStore.resetStore()
+  resetStore()
 }
 </script>
 
@@ -30,16 +28,16 @@ function handleLogout() {
 
       <div class="flex-center space-x-4">
         <!-- Theme Toggle -->
-        <n-button circle quaternary @click="themeStore.toggleThemeScheme()">
+        <n-button circle quaternary @click="toggleThemeScheme()">
           <template #icon>
-            <div v-if="themeStore.themeScheme === 'dark'" class="i-carbon-moon text-xl" />
-            <div v-else-if="themeStore.themeScheme === 'auto'" class="i-carbon-laptop text-xl" />
+            <div v-if="themeScheme === 'dark'" class="i-carbon-moon text-xl" />
+            <div v-else-if="themeScheme === 'auto'" class="i-carbon-laptop text-xl" />
             <div v-else class="i-carbon-sun text-xl" />
           </template>
         </n-button>
 
         <!-- Language Select -->
-        <n-dropdown trigger="hover" :options="appStore.localeOptions" @select="handleLanguageSelect">
+        <n-dropdown trigger="hover" :options="localeOptions" @select="handleLanguageSelect">
           <n-button circle quaternary>
             <template #icon>
               <div class="i-carbon-language text-xl" />

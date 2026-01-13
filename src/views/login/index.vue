@@ -2,15 +2,13 @@
 import { computed, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { FormRules } from 'naive-ui'
-import { useAppStore } from '@/store/modules/app'
-import { useAuthStore } from '@/store/modules/auth'
-import { useThemeStore } from '@/store/modules/theme'
 import { useNaiveForm } from '@/hooks/use-naive-form'
+import { useStore } from '@/hooks'
 
 const { t } = useI18n()
-const appStore = useAppStore()
-const authStore = useAuthStore()
-const themeStore = useThemeStore()
+const { changeLocale, localeOptions } = useStore('app')
+const { login, loginLoading } = useStore('auth')
+const { toggleThemeScheme, themeScheme } = useStore('theme')
 const { formRef, validate } = useNaiveForm()
 
 const model = reactive({
@@ -48,7 +46,7 @@ const rules = computed<FormRules>(() => ({
 async function handleLogin() {
   try {
     await validate()
-    await authStore.login(model.username, model.password)
+    await login(model.username, model.password)
   }
   catch (error) {
     console.error(error)
@@ -56,7 +54,7 @@ async function handleLogin() {
 }
 
 function handleLanguageSelect(key: I18n.LangType) {
-  appStore.changeLocale(key)
+  changeLocale(key)
 }
 </script>
 
@@ -70,16 +68,16 @@ function handleLanguageSelect(key: I18n.LangType) {
         </h1>
         <div class="absolute right-4 top-4 flex-center space-x-4">
           <!-- Theme Toggle -->
-          <n-button circle quaternary @click="themeStore.toggleThemeScheme()">
+          <n-button circle quaternary @click="toggleThemeScheme()">
             <template #icon>
-              <div v-if="themeStore.themeScheme === 'dark'" class="i-carbon-moon text-xl" />
-              <div v-else-if="themeStore.themeScheme === 'auto'" class="i-carbon-laptop text-xl" />
+              <div v-if="themeScheme === 'dark'" class="i-carbon-moon text-xl" />
+              <div v-else-if="themeScheme === 'auto'" class="i-carbon-laptop text-xl" />
               <div v-else class="i-carbon-sun text-xl" />
             </template>
           </n-button>
 
           <!-- Language Select -->
-          <n-dropdown trigger="hover" :options="appStore.localeOptions" @select="handleLanguageSelect">
+          <n-dropdown trigger="hover" :options="localeOptions" @select="handleLanguageSelect">
             <n-button circle quaternary>
               <template #icon>
                 <div class="i-carbon-language text-xl" />
@@ -113,7 +111,7 @@ function handleLanguageSelect(key: I18n.LangType) {
           </n-input>
         </n-form-item>
 
-        <n-button type="primary" block size="large" :loading="authStore.loginLoading" @click="handleLogin">
+        <n-button type="primary" block size="large" :loading="loginLoading" @click="handleLogin">
           {{ t('page.login.confirm') }}
         </n-button>
       </n-form>
