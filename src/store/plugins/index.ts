@@ -1,5 +1,5 @@
-import type { PiniaPluginContext } from 'pinia'
 import { SetupStoreId } from '@/const'
+import type { PiniaPluginContext } from 'pinia'
 
 /**
  * The plugin reset the state of the store which is written by setup syntax

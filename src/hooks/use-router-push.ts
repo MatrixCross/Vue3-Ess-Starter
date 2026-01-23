@@ -1,6 +1,6 @@
 import { useRouter } from 'vue-router'
-import type { RouteLocationRaw } from 'vue-router'
 import { router as globalRouter } from '@/router'
+import type { RouteLocationRaw } from 'vue-router'
 
 /**
  * Router push

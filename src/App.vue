@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { darkTheme, NConfigProvider } from 'naive-ui'
+import { useStore } from '@/hooks'
 import { naiveDateLocales, naiveLocales } from './locales/naive'
 import type { WatermarkProps } from 'naive-ui'
-import { useStore } from '@/hooks'
 
 defineOptions({
   name: 'App',

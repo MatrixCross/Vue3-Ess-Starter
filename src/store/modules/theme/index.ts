@@ -1,6 +1,10 @@
 import { computed, effectScope, onScopeDispose, ref, toRefs, watch } from 'vue'
 import { useDateFormat, useNow, usePreferredColorScheme } from '@vueuse/core'
 import { defineStore } from 'pinia'
+import { getPaletteColorByNumber } from '@/utils/color'
+import { localStg } from '@/utils/storage'
+import { SetupStoreId } from '@/const'
+import { themeSettings } from '@/theme/settings'
 import { useAuthStore } from '../auth'
 import {
   addThemeVarsToGlobal,
@@ -10,10 +14,6 @@ import {
   toggleCssDarkMode,
 } from './shared'
 import type { Ref } from 'vue'
-import { getPaletteColorByNumber } from '@/utils/color'
-import { localStg } from '@/utils/storage'
-import { SetupStoreId } from '@/const'
-import { themeSettings } from '@/theme/settings'
 
 /** Theme store */
 export const useThemeStore = defineStore(SetupStoreId.Theme, () => {

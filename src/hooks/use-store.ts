@@ -3,9 +3,9 @@
  */
 
 import { storeToRefs } from 'pinia'
+import { useAppStore, useAuthStore, useThemeStore } from '@/store/modules'
 import type { StoreDefinition } from 'pinia'
 import type { ToRef, UnwrapRef } from 'vue'
-import { useAppStore, useAuthStore, useThemeStore } from '@/store/modules'
 
 type StoreToRefs<T extends StoreDefinition> = {
   [K in keyof ReturnType<T>]: ReturnType<T>[K] extends (...arg: any[]) => any
