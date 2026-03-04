@@ -1,11 +1,11 @@
 import { computed, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { defineStore } from 'pinia'
-import { clearAuthStorage, getToken } from './shared'
 import { useLoading, useRouterPush } from '@/hooks'
 import { localStg } from '@/utils/storage'
 import { SetupStoreId } from '@/const'
 import { $t } from '@/locales'
+import { clearAuthStorage, getToken } from './shared'
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const route = useRoute()

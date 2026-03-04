@@ -15,6 +15,7 @@ const i18n = createI18n<[I18n.Schema]>({
  * @param app
  */
 export function setupI18n(app: App) {
+  // @ts-ignore @todo: fix type
   app.use(i18n)
 }
 

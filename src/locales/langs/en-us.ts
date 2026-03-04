@@ -1,4 +1,7 @@
 const local: I18n.Schema = {
+  common: {
+    backToHome: 'Back to Home',
+  },
   system: {
     title: 'Vue3 Essentials Starter',
     updateTitle: 'System Version Update Notification',

@@ -25,6 +25,8 @@ declare namespace Env {
     readonly VITE_PROXY_LOG?: CommonType.YesOrNo
     /** backend api base url */
     readonly VITE_API_BASE_URL: string
+    /** launch editor type */
+    readonly VITE_DEVTOOLS_LAUNCH_EDITOR: 'appcode' | 'atom' | 'atom-beta' | 'brackets' | 'clion' | 'code' | 'code-insiders' | 'codium' | 'emacs' | 'idea' | 'notepad++' | 'pycharm' | 'phpstorm' | 'rubymine' | 'sublime' | 'vim' | 'visualstudio' | 'webstorm' | 'rider' | string
   }
 }
 

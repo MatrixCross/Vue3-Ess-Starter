@@ -28,6 +28,23 @@ export default antfu({
       'error',
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '~/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '~icons/**',
+            group: 'external',
+            position: 'after',
+          },
+        ],
       },
     ],
   },

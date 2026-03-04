@@ -1,7 +1,7 @@
+import { localStg } from '@/utils/storage'
 import type {
   Router,
 } from 'vue-router'
-import { localStg } from '@/utils/storage'
 
 /**
  * create route guard

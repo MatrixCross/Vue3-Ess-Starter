@@ -22,6 +22,9 @@ declare namespace I18n {
   }
 
   interface Schema {
+    common: {
+      backToHome: string
+    }
     system: {
       title: string
       updateTitle: string

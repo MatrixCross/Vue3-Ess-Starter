@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { FormRules } from 'naive-ui'
 import { useNaiveForm } from '@/hooks/use-naive-form'
 import { useStore } from '@/hooks'
+import type { FormRules } from 'naive-ui'
 
 const { t } = useI18n()
 const { changeLocale, localeOptions } = useStore('app')
@@ -119,4 +119,10 @@ function handleLanguageSelect(key: I18n.LangType) {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+:deep(input:autofill) {
+  /* 隐藏自动填充后的背景 */
+  transition: background-color 50000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--n-text-color);
+}
+</style>

@@ -3,9 +3,9 @@
  */
 
 import { storeToRefs } from 'pinia'
+import { useAppStore, useAuthStore, useThemeStore } from '@/store/modules'
 import type { StoreDefinition } from 'pinia'
 import type { ToRef, UnwrapRef } from 'vue'
-import { useAppStore, useAuthStore, useThemeStore } from '@/store/modules'
 
 type StoreToRefs<T extends StoreDefinition> = {
   [K in keyof ReturnType<T>]: ReturnType<T>[K] extends (...arg: any[]) => any
@@ -13,10 +13,10 @@ type StoreToRefs<T extends StoreDefinition> = {
     : ToRef<UnwrapRef<ReturnType<T>[K]>>
 }
 
-const storeExports = {
-  app: useAppStore,
-  theme: useThemeStore,
-  auth: useAuthStore,
+interface IStoreExports {
+  app: typeof useAppStore
+  theme: typeof useThemeStore
+  auth: typeof useAuthStore
 }
 
 /**
@@ -28,15 +28,18 @@ const storeExports = {
  *
  * @template T - The key of the store to access (e.g., 'app', 'theme', 'auth').
  * @param {T} storeName - The name of the store module to use.
- * @returns {StoreToRefs<typeof storeExports[T]>} An object containing the store's reactive state/getters (as refs) and actions.
- *
  * @example
  * // Usage in a component:
  * const { count, increment } = useStore('app');
  * // 'count' is a Ref and maintains reactivity
  * // 'increment' is a function
  */
-export function useStore<T extends keyof typeof storeExports>(storeName: T): StoreToRefs<(typeof storeExports)[T]> {
+export function useStore<T extends keyof IStoreExports>(storeName: T) {
+  const storeExports = {
+    app: useAppStore,
+    theme: useThemeStore,
+    auth: useAuthStore,
+  }
   const targetStore = storeExports[storeName]()
   const storeRefs = storeToRefs(targetStore)
   return { ...targetStore, ...storeRefs } as StoreToRefs<(typeof storeExports)[T]>

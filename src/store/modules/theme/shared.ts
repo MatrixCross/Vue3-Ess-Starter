@@ -1,10 +1,10 @@
 import { defu } from 'defu'
-import type { GlobalThemeOverrides } from 'naive-ui'
 import { addColorAlpha, getColorPalette, getPaletteColorByNumber, getRgb } from '@/utils/color'
 import { DARK_CLASS } from '@/const'
 import { toggleHtmlClass } from '@/utils/common'
 import { themeSettings } from '@/theme/settings'
 import { themeVars } from '@/theme/vars'
+import type { GlobalThemeOverrides } from 'naive-ui'
 
 /**
  * create theme token css vars value by theme settings

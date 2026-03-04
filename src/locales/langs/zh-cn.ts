@@ -1,4 +1,7 @@
 const local: I18n.Schema = {
+  common: {
+    backToHome: '返回首页',
+  },
   system: {
     title: 'Vue3 基础模板',
     updateTitle: '系统版本更新通知',

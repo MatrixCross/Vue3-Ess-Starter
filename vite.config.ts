@@ -60,7 +60,7 @@ export default defineConfig((configEnv) => {
         ],
       }),
       vueDevTools({
-        launchEditor: viteEnv.VITE_DEVTOOLS_LAUNCH_EDITOR,
+        launchEditor: viteEnv.VITE_DEVTOOLS_LAUNCH_EDITOR || 'webstorm',
       }),
       setupHtmlPlugin(buildTime),
     ],
