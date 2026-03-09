@@ -49,6 +49,8 @@ export function getRecommendedPaletteColorByNumber(color: string, number: ColorP
   return hex
 }
 
+const colorNameRegReplace = /\s/g
+
 /**
  * get color palette family by provided color and color name
  *
@@ -61,7 +63,7 @@ export function getRecommendedColorPaletteFamily(color: string) {
 
   let colorName = getColorName(color)
 
-  colorName = colorName.toLowerCase().replace(/\s/g, '-')
+  colorName = colorName.toLowerCase().replace(colorNameRegReplace, '-')
 
   const { h: h1, s: s1 } = getHsl(color)
 

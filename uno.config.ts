@@ -10,6 +10,8 @@ import {
 import { themeVars } from './src/theme/vars'
 import { ICONS_ASSETS } from './src/const'
 
+const svgReplaceReg = /^<svg\s/
+
 export default defineConfig({
   shortcuts: {
     'flex-center': 'flex justify-center items-center',
@@ -64,7 +66,7 @@ export default defineConfig({
       },
       collections: {
         local: FileSystemIconLoader(ICONS_ASSETS, svg =>
-          svg.replace(/^<svg\s/, '<svg width="1em" height="1em" ')),
+          svg.replace(svgReplaceReg, '<svg width="1em" height="1em" ')),
       },
       warn: true,
       unit: 'em',

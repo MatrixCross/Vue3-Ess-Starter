@@ -89,6 +89,8 @@ export function setupAppVersionNotification() {
   }
 }
 
+const buildTimeRegex = /<meta name="buildTime" content="(.*)">/
+
 async function getHtmlBuildTime(): Promise<string | null> {
   const baseUrl = import.meta.env.VITE_BASE_URL || '/'
 
@@ -100,7 +102,7 @@ async function getHtmlBuildTime(): Promise<string | null> {
     }
 
     const html = await res.text()
-    const match = html.match(/<meta name="buildTime" content="(.*)">/)
+    const match = html.match(buildTimeRegex)
     return match?.[1] || null
   }
   catch (error) {

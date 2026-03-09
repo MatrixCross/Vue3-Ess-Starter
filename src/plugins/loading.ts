@@ -17,8 +17,7 @@ export function setupLoading() {
 
   const primaryColor = `--primary-color: ${r} ${g} ${b}`
 
-  const svgCssVars = Array.from(palette.entries())
-    .map(([key, value]) => `--logo-color-${key}: ${value}`)
+  const svgCssVars = Array.from(palette.entries(), ([key, value]) => `--logo-color-${key}: ${value}`)
     .join(';')
 
   const cssVars = `${primaryColor}; ${svgCssVars}`

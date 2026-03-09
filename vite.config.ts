@@ -20,6 +20,8 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 
 const buildTime = dayjs.tz(Date.now(), 'Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss')
+const svgReplaceReg = /^<svg\s/
+
 // https://vite.dev/config/
 export default defineConfig((configEnv) => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as unknown as Env.ImportMeta
@@ -46,7 +48,7 @@ export default defineConfig((configEnv) => {
       icons({
         customCollections: {
           local: FileSystemIconLoader(ICONS_ASSETS, svg =>
-            svg.replace(/^<svg\s/, '<svg width="1em" height="1em" ')),
+            svg.replace(svgReplaceReg, '<svg width="1em" height="1em" ')),
         },
       }),
       components({

@@ -45,9 +45,9 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     startLoading()
 
     // mock login
-    const token = await new Promise<Api.User.LoginToken>(res => setTimeout(() => res({
+    const token = await new Promise<Api.User.LoginToken>(res => setTimeout(res, 1000, {
       token: `${username}-${password}`,
-    }), 1000))
+    }))
     const error = false
 
     if (!error) {
