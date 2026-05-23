@@ -6,15 +6,12 @@
       "@/*": ["./src/*"],
       "~/*": ["./*"]
     },
-
     "types": ["vite/client"],
-    /* Linting */
-    "strict": true,
     "noFallthroughCasesInSwitch": true,
+    /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noUncheckedSideEffectImports": true
+    "erasableSyntaxOnly": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

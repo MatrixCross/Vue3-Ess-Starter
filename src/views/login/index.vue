@@ -9,7 +9,7 @@ const { t } = useI18n()
 const { changeLocale, localeOptions } = useStore('app')
 const { login, loginLoading } = useStore('auth')
 const { toggleThemeScheme, themeScheme } = useStore('theme')
-const { formRef, validate } = useNaiveForm()
+const { setFormRef, validate } = useNaiveForm()
 
 const model = reactive({
   username: '',
@@ -88,7 +88,7 @@ function handleLanguageSelect(key: I18n.LangType) {
       </div>
 
       <!-- Form -->
-      <n-form ref="formRef" :model="model" :rules="rules" size="large" :show-label="false">
+      <n-form :ref="setFormRef" :model="model" :rules="rules" size="large" :show-label="false">
         <n-form-item path="username">
           <n-input v-model:value="model.username" :placeholder="t('page.login.form.username.placeholder')">
             <template #prefix>
