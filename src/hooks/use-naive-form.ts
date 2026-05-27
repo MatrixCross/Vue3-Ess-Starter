@@ -1,11 +1,9 @@
-import { ref, useTemplateRef } from 'vue'
-import type { ComponentPublicInstance, Ref } from 'vue'
+import { ref } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import type { FormInst } from 'naive-ui'
 
-export function useNaiveForm(key?: string) {
-  const formRef: Ref<FormInst | null> = key
-    ? useTemplateRef(key)
-    : ref(null)
+export function useNaiveForm() {
+  const formRef = ref<FormInst | null>(null)
 
   function setFormRef(ref: Element | ComponentPublicInstance | null) {
     formRef.value = ref as FormInst | null

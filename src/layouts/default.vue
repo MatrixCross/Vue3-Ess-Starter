@@ -3,8 +3,6 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useStore } from '@/hooks'
 
-defineOptions({ name: 'MainLayout' })
-
 const route = useRoute()
 const { t } = useI18n()
 const { changeLocale, localeOptions } = useStore('app')
