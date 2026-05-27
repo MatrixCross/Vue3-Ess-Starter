@@ -6,12 +6,18 @@
       "@/*": ["./src/*"],
       "~/*": ["./*"]
     },
-    "types": ["vite/client"],
+    "types": ["vite/client", "vite-plugin-vue-layouts/client"],
     "noFallthroughCasesInSwitch": true,
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "vue-router/volar/sfc-route-blocks",
+      "vue-router/volar/sfc-typed-router"
+    ]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

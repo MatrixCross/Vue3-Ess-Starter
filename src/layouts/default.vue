@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import { useStore } from '@/hooks'
 
 defineOptions({ name: 'MainLayout' })
 
+const route = useRoute()
 const { t } = useI18n()
 const { changeLocale, localeOptions } = useStore('app')
 const { resetStore } = useStore('auth')
@@ -19,7 +21,7 @@ function handleLogout() {
 </script>
 
 <template>
-  <div class="wh-full flex flex-col from-layout to-layout/90 bg-gradient-to-br transition-all duration-500">
+  <div v-if="route.name !== 'login'" class="wh-full flex flex-col from-layout to-layout/90 bg-gradient-to-br transition-all duration-500">
     <!-- Header -->
     <header class="h-14 flex justify-between border-b bg-container/95 px-6 shadow-lg backdrop-blur-md transition-all duration-300">
       <div class="flex items-center space-x-3">
@@ -68,6 +70,9 @@ function handleLogout() {
       </div>
     </main>
   </div>
+  <template v-else>
+    <router-view />
+  </template>
 </template>
 
 <style scoped></style>

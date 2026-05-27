@@ -30,6 +30,7 @@
     "@antfu/eslint-config": "^9.0.0",
     "@commitlint/cli": "^21.0.1",
     "@commitlint/config-conventional": "^21.0.1",
+    "@iconify-json/carbon": "^1.2.22",
     "@iconify/utils": "^3.1.3",
     "@types/crypto-js": "^4.2.2",
     "@types/node": "^25.9.1",
@@ -38,7 +39,7 @@
     "@vitejs/plugin-vue": "^6.0.7",
     "@vitejs/plugin-vue-jsx": "^5.1.5",
     "@vue/tsconfig": "^0.9.1",
-    "dayjs": "^1.11.20",
+    "dayjs": "^1.11.21",
     "eslint": "^10.4.0",
     "eslint-plugin-format": "^2.0.1",
     "eslint-plugin-import-x": "^4.16.2",
@@ -50,7 +51,8 @@
     "unplugin-vue-components": "^32.1.0",
     "vite": "^8.0.14",
     "vite-plugin-vue-devtools": "^8.1.2",
-    "vue-tsc": "^3.3.1"
+    "vite-plugin-vue-layouts": "^0.11.0",
+    "vue-tsc": "^3.3.2"
   },
   "simple-git-hooks": {
     "commit-msg": "npx --no-install commitlint --edit \"$1\"",

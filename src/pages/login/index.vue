@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { definePage } from 'vue-router/experimental'
 import { useNaiveForm } from '@/hooks/use-naive-form'
 import { useStore } from '@/hooks'
 import type { FormRules } from 'naive-ui'
+
+definePage({
+  name: 'login',
+  meta: {
+    i18nKey: 'route.login',
+    title: 'Login',
+  },
+})
 
 const { t } = useI18n()
 const { changeLocale, localeOptions } = useStore('app')

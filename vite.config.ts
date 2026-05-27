@@ -11,6 +11,8 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import icons from 'unplugin-icons/vite'
 import iconsResolver from 'unplugin-icons/resolver'
 import components from 'unplugin-vue-components/vite'
+import vueRouter from 'vue-router/vite'
+import layouts from 'vite-plugin-vue-layouts'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { setupHtmlPlugin } from './build/html'
@@ -42,8 +44,12 @@ export default defineConfig((configEnv) => {
       },
     },
     plugins: [
+      vueRouter({
+        dts: './src/types/typed-router.d.ts',
+      }),
       vue(),
       vueJsx(),
+      layouts(),
       unocss(),
       icons({
         customCollections: {

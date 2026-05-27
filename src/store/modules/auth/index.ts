@@ -1,7 +1,7 @@
 import { computed, reactive, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { defineStore } from 'pinia'
-import { useLoading, useRouterPush } from '@/hooks'
+import { useLoading } from '@/hooks'
 import { localStg } from '@/utils/storage'
 import { SetupStoreId } from '@/const'
 import { $t } from '@/locales'
@@ -9,8 +9,8 @@ import { clearAuthStorage, getToken } from './shared'
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const route = useRoute()
+  const router = useRouter()
   const authStore = useAuthStore()
-  const { toLogin, redirectFromLogin } = useRouterPush(false)
   const { loading: loginLoading, startLoading, endLoading } = useLoading()
 
   const token = ref(getToken())
@@ -30,7 +30,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     authStore.$reset()
 
     if (!route.meta.constant) {
-      await toLogin()
+      await router.push('/login')
     }
   }
 
@@ -54,7 +54,10 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
       const pass = await loginByToken(token)
 
       if (pass) {
-        await redirectFromLogin(redirect)
+        if (redirect) {
+          await router.push((route.query?.redirect || '/home') as string)
+        }
+        await router.push('/home')
       }
     }
     else {

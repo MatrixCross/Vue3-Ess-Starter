@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useRouterPush } from '@/hooks'
+import { useRouter } from 'vue-router'
 import { $t } from '@/locales'
 
 defineOptions({ name: 'ExceptionBase' })
@@ -20,7 +20,7 @@ interface Props {
   type: ExceptionType
 }
 
-const { routerPushByKey } = useRouterPush()
+const router = useRouter()
 
 const iconMap: Record<ExceptionType, string> = {
   403: 'i-local-no-permission',
@@ -34,7 +34,7 @@ const icon = computed(() => iconMap[props.type])
 <template>
   <div class="size-full min-h-520px flex-col-center gap-24px overflow-hidden">
     <div class="flex text-400px text-primary" :class="[icon]" />
-    <NButton type="primary" @click="routerPushByKey('root')">
+    <NButton type="primary" @click="router.push('/home')">
       {{ $t('common.backToHome') }}
     </NButton>
   </div>

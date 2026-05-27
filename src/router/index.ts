@@ -5,7 +5,8 @@ import {
   createWebHistory,
 
 } from 'vue-router'
-import { routes } from './routes'
+import { handleHotUpdate, routes } from 'vue-router/auto-routes'
+import { setupLayouts } from 'virtual:generated-layouts'
 import { createRouterGuard } from './guard'
 import type { RouterHistory } from 'vue-router'
 import type { App } from 'vue'
@@ -20,7 +21,7 @@ const historyCreatorMap: Record<Env.RouterHistoryMode, (base?: string) => Router
 
 export const router = createRouter({
   history: historyCreatorMap[VITE_ROUTER_HISTORY_MODE](VITE_BASE_URL),
-  routes,
+  routes: setupLayouts(routes),
 })
 
 /** Setup Vue Router */
@@ -28,4 +29,8 @@ export async function setupRouter(app: App) {
   app.use(router)
   createRouterGuard(router)
   await router.isReady()
+}
+
+if (import.meta.hot) {
+  handleHotUpdate(router)
 }

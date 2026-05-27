@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { definePage } from 'vue-router/experimental'
+
+definePage({
+  alias: '/',
+  meta: {
+    i18nKey: 'route.home',
+    title: 'Home',
+  },
+})
 
 const techStack = ref([
   {
