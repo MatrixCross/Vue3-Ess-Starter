@@ -27,5 +27,9 @@ export function createRouteGuard(router: Router) {
     if (!isLogin && to.name !== 'login') {
       return ({ name: 'login', query: { redirect: to.fullPath } })
     }
+
+    if (!to.matched.length) {
+      return '/not-found'
+    }
   })
 }

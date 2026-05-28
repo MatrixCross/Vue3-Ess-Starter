@@ -19,6 +19,9 @@ export default antfu({
   plugins: {
     'import-x': importX,
   },
+  settings: {
+    'import/core-modules': ['vue-router/auto-routes'],
+  },
   rules: {
     'ts/ban-ts-comment': 'off',
     // 禁用 perfectionist/sort-imports 规则

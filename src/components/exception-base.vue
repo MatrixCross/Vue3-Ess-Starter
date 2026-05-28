@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import noPermission from '~icons/local/no-permission'
+import notFound from '~icons/local/not-found'
+import serviceError from '~icons/local/service-error'
 import { $t } from '@/locales'
+import type { Component } from 'vue'
 
 defineOptions({ name: 'ExceptionBase' })
 
@@ -22,10 +26,10 @@ interface Props {
 
 const router = useRouter()
 
-const iconMap: Record<ExceptionType, string> = {
-  403: 'i-local-no-permission',
-  404: 'i-local-not-found',
-  500: 'i-local-service-error',
+const iconMap: Record<ExceptionType, Component> = {
+  403: noPermission,
+  404: notFound,
+  500: serviceError,
 }
 
 const icon = computed(() => iconMap[props.type])
@@ -33,7 +37,7 @@ const icon = computed(() => iconMap[props.type])
 
 <template>
   <div class="size-full min-h-520px flex-col-center gap-24px overflow-hidden">
-    <div class="flex text-400px text-primary" :class="[icon]" />
+    <component :is="icon" class="flex text-400px text-primary" />
     <NButton type="primary" @click="router.push('/home')">
       {{ $t('common.backToHome') }}
     </NButton>

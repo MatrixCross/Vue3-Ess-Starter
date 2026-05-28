@@ -15,12 +15,6 @@ declare namespace I18n {
 
   type I18nRouteKey = Exclude<Route.RouteKey, 'root'>
 
-  interface FormMsg {
-    required: string
-    invalid: string
-    placeholder: string
-  }
-
   interface Schema {
     common: {
       backToHome: string
@@ -39,8 +33,16 @@ declare namespace I18n {
       }
       login: {
         form: {
-          username: FormMsg
-          password: FormMsg
+          username: {
+            required: string
+            invalid: string
+            placeholder: string
+          }
+          password: {
+            required: string
+            invalid: string
+            placeholder: string
+          }
         }
         confirm: string
         loginSuccess: string

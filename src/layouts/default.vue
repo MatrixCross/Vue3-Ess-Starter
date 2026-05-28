@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useStore } from '@/hooks'
+import { $t } from '@/locales'
 
 const route = useRoute()
-const { t } = useI18n()
 const { changeLocale, localeOptions } = useStore('app')
 const { resetStore } = useStore('auth')
 const { toggleThemeScheme, themeScheme } = useStore('theme')
@@ -21,13 +20,13 @@ function handleLogout() {
 <template>
   <div v-if="route.name !== 'login'" class="wh-full flex flex-col from-layout to-layout/90 bg-gradient-to-br transition-all duration-500">
     <!-- Header -->
-    <header class="h-14 flex justify-between border-b bg-container/95 px-6 shadow-lg backdrop-blur-md transition-all duration-300">
+    <header class="h-14 flex justify-between bg-container/95 px-6 shadow-lg backdrop-blur-md transition-all duration-300">
       <div class="flex items-center space-x-3">
         <div class="h-8 w-8 flex items-center justify-center rounded-lg from-primary to-primary/70 bg-gradient-to-br shadow-md">
           <div class="i-carbon-application text-white" />
         </div>
         <h1 class="text-2xl from-primary to-primary/70 bg-gradient-to-r bg-clip-text text-transparent font-bold">
-          {{ t('system.title') }}
+          {{ $t('system.title') }}
         </h1>
       </div>
 
@@ -62,7 +61,7 @@ function handleLogout() {
     <!-- Content -->
     <main class="flex-1 overflow-auto p-6">
       <div class="mx-auto max-w-7xl">
-        <div class="min-h-[calc(100vh-10rem)] border rounded-2xl bg-container/60 p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl">
+        <div class="min-h-[calc(100vh-10rem)] rounded-2xl bg-container p-6 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl">
           <router-view />
         </div>
       </div>

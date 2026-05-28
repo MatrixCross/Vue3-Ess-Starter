@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { definePage } from 'vue-router/experimental'
-import { useNaiveForm } from '@/hooks/use-naive-form'
-import { useStore } from '@/hooks'
+import { useNaiveForm, useStore } from '@/hooks'
+import { $t } from '@/locales'
 import type { FormRules } from 'naive-ui'
 
 definePage({
@@ -14,7 +13,6 @@ definePage({
   },
 })
 
-const { t } = useI18n()
 const { changeLocale, localeOptions } = useStore('app')
 const { login, loginLoading } = useStore('auth')
 const { toggleThemeScheme, themeScheme } = useStore('theme')
@@ -29,24 +27,24 @@ const rules = computed<FormRules>(() => ({
   username: [
     {
       required: true,
-      message: t('page.login.form.username.required'),
+      message: $t('page.login.form.password.required'),
       trigger: 'input',
     },
     {
       min: 6,
-      message: t('page.login.form.username.invalid'),
+      message: $t('page.login.form.username.invalid'),
       trigger: 'input',
     },
   ],
   password: [
     {
       required: true,
-      message: t('page.login.form.password.required'),
+      message: $t('page.login.form.password.required'),
       trigger: 'input',
     },
     {
       min: 6,
-      message: t('page.login.form.password.invalid'),
+      message: $t('page.login.form.password.invalid'),
       trigger: 'input',
     },
   ],
@@ -73,7 +71,7 @@ function handleLanguageSelect(key: I18n.LangType) {
       <!-- Header -->
       <div class="mb-6 flex-y-center space-y-2">
         <h1 class="text-2xl w-full text-center text-primary font-bold">
-          {{ t('system.title') }}
+          {{ $t('system.title') }}
         </h1>
         <div class="absolute right-4 top-4 flex-center space-x-4">
           <!-- Theme Toggle -->
@@ -99,7 +97,7 @@ function handleLanguageSelect(key: I18n.LangType) {
       <!-- Form -->
       <n-form :ref="setFormRef" :model="model" :rules="rules" size="large" :show-label="false">
         <n-form-item path="username">
-          <n-input v-model:value="model.username" :placeholder="t('page.login.form.username.placeholder')">
+          <n-input v-model:value="model.username" :placeholder="$t('page.login.form.username.placeholder')">
             <template #prefix>
               <div class="i-carbon-user text-gray-400" />
             </template>
@@ -111,7 +109,7 @@ function handleLanguageSelect(key: I18n.LangType) {
             v-model:value="model.password"
             type="password"
             show-password-on="click"
-            :placeholder="t('page.login.form.password.placeholder')"
+            :placeholder="$t('page.login.form.password.placeholder')"
             @keyup.enter="handleLogin"
           >
             <template #prefix>
@@ -121,7 +119,7 @@ function handleLanguageSelect(key: I18n.LangType) {
         </n-form-item>
 
         <n-button type="primary" block size="large" :loading="loginLoading" @click="handleLogin">
-          {{ t('page.login.confirm') }}
+          {{ $t('page.login.confirm') }}
         </n-button>
       </n-form>
     </div>
