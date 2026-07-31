@@ -29,6 +29,11 @@ export default defineConfig((configEnv) => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as unknown as Env.ImportMeta
   return {
     base: viteEnv.VITE_BASE_URL,
+    // @todo: bundledDev对虚拟模块支持不好，等待修复后再使用
+    // https://github.com/vitejs/vite/issues/22864
+    // experimental: {
+    //   bundledDev: true,
+    // },
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./', import.meta.url)),

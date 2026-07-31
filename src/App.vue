@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import { computed } from 'vue'
 import { darkTheme, NConfigProvider } from 'naive-ui'
 import { useStore } from '@/hooks'

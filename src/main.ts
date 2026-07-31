@@ -1,5 +1,5 @@
 import './styles'
-import { createApp } from 'vue'
+import { createApp, vaporInteropPlugin } from 'vue'
 import { setupAppVersionNotification, setupDayjs, setupLoading, setupNProgress } from '@/plugins'
 import { setupStore } from '@/store'
 import { setupRouter } from '@/router'
@@ -15,6 +15,7 @@ async function setupApp() {
   await setupRouter(app)
   setupI18n(app)
   setupAppVersionNotification()
+  app.use(vaporInteropPlugin)
   app.mount('#app')
 }
 
