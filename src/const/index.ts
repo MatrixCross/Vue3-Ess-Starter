@@ -1,2 +1,2 @@
-export * from './app'
-export * from './icons'
+export * from './app.ts'
+export * from './icons.ts'

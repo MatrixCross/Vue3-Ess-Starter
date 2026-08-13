@@ -15,8 +15,8 @@ import vueRouter from 'vue-router/vite'
 import layouts from 'vite-plugin-vue-layouts'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
-import { setupHtmlPlugin } from './build/html'
-import { ICONS_ASSETS } from './src/const'
+import { setupHtmlPlugin } from './build/html.ts'
+import { ICONS_ASSETS } from './src/const/index.ts'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
