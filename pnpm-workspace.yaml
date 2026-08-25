@@ -26,6 +26,8 @@ minimumReleaseAgeExclude:
   - sass-embedded-win32-arm64@1.102.0
   - sass-embedded-win32-x64@1.102.0
   - sass-embedded@1.102.0
+  - '@types/node@26.3.0'
+  - eslint@10.9.1
 
 shellEmulator: true
 
