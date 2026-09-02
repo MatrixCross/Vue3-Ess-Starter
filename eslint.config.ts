@@ -1,5 +1,6 @@
 import antfu from '@antfu/eslint-config'
 import { importX } from 'eslint-plugin-import-x'
+import sonarjs from 'eslint-plugin-sonarjs'
 
 export default antfu({
   type: 'app',
@@ -48,6 +49,39 @@ export default antfu({
             position: 'after',
           },
         ],
+      },
+    ],
+  },
+}, sonarjs.configs.recommended, {
+  rules: {
+    'sonarjs/todo-tag': 'warn',
+  },
+}, {
+  files: ['src/**/*.{ts,vue}'],
+  ignores: ['src/utils/storage.ts', 'src/store/index.ts'],
+  rules: {
+    'no-restricted-globals': [
+      'error',
+      {
+        name: 'localStorage',
+        message: '禁止直接调用全局 localStorage，请使用 @/utils/storage 中的 localStg。',
+      },
+      {
+        name: 'sessionStorage',
+        message: '禁止直接调用全局 sessionStorage，请使用 @/utils/storage 中的 sessionStg。',
+      },
+    ],
+    'no-restricted-properties': [
+      'error',
+      {
+        object: 'window',
+        property: 'localStorage',
+        message: '禁止直接调用 window.localStorage，请使用 @/utils/storage 中的 localStg。',
+      },
+      {
+        object: 'window',
+        property: 'sessionStorage',
+        message: '禁止直接调用 window.sessionStorage，请使用 @/utils/storage 中的 sessionStg。',
       },
     ],
   },

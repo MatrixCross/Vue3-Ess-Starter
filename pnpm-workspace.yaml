@@ -1,37 +1,40 @@
-allowBuilds:
-  '@parcel/watcher': true
-  simple-git-hooks: true
-  unrs-resolver: true
-
+minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
-  - vite@8.2.0
-  - alova@3.5.4
-  - pinia@4.0.3
-  - sass-embedded-all-unknown@1.102.0
-  - sass-embedded-android-arm64@1.102.0
-  - sass-embedded-android-arm@1.102.0
-  - sass-embedded-android-riscv64@1.102.0
-  - sass-embedded-android-x64@1.102.0
-  - sass-embedded-darwin-arm64@1.102.0
-  - sass-embedded-darwin-x64@1.102.0
-  - sass-embedded-linux-arm64@1.102.0
-  - sass-embedded-linux-arm@1.102.0
-  - sass-embedded-linux-musl-arm64@1.102.0
-  - sass-embedded-linux-musl-arm@1.102.0
-  - sass-embedded-linux-musl-riscv64@1.102.0
-  - sass-embedded-linux-musl-x64@1.102.0
-  - sass-embedded-linux-riscv64@1.102.0
-  - sass-embedded-linux-x64@1.102.0
-  - sass-embedded-unknown-all@1.102.0
-  - sass-embedded-win32-arm64@1.102.0
-  - sass-embedded-win32-x64@1.102.0
-  - sass-embedded@1.102.0
-  - '@types/node@26.3.0'
-  - eslint@10.9.1
-
-shellEmulator: true
+  - '@antfu/eslint-config@9.5.1'
+  - '@types/node@26.4.1'
+  - '@unocss/cli@66.9.2'
+  - '@unocss/config@66.9.2'
+  - '@unocss/core@66.9.2'
+  - '@unocss/eslint-plugin@66.9.2'
+  - '@unocss/extractor-arbitrary-variants@66.9.2'
+  - '@unocss/inspector@66.9.2'
+  - '@unocss/preset-attributify@66.9.2'
+  - '@unocss/preset-icons@66.9.2'
+  - '@unocss/preset-mini@66.9.2'
+  - '@unocss/preset-tagify@66.9.2'
+  - '@unocss/preset-typography@66.9.2'
+  - '@unocss/preset-uno@66.9.2'
+  - '@unocss/preset-web-fonts@66.9.2'
+  - '@unocss/preset-wind3@66.9.2'
+  - '@unocss/preset-wind4@66.9.2'
+  - '@unocss/preset-wind@66.9.2'
+  - '@unocss/rule-utils@66.9.2'
+  - '@unocss/transformer-attributify-jsx@66.9.2'
+  - '@unocss/transformer-compile-class@66.9.2'
+  - '@unocss/transformer-directives@66.9.2'
+  - '@unocss/transformer-variant-group@66.9.2'
+  - '@unocss/vite@66.9.2'
+  - eslint-plugin-pnpm@1.9.1
+  - pnpm-workspace-yaml@1.9.1
+  - unocss@66.9.2
 
 trustPolicy: no-downgrade
+shellEmulator: true
 
 overrides:
   semver: ^7.8.5
+
+allowBuilds:
+  '@parcel/watcher': true
+  simple-git-hooks: false
+  unrs-resolver: true
